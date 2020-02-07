@@ -9,6 +9,9 @@
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/iconfont.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="../js库/jquery-1.12.4.min.js"></script>
+    <script src="./js/utils/config.js"></script>
+    <script src="./js/utils/login.js"></script>
 </head>
 
 <body>
@@ -23,11 +26,34 @@
             <form class="login_form">
                 <i class="iconfont icon-user"></i>
                 <i class="iconfont icon-key"></i>
-                <input type="text" class="input_txt" placeholder="邮箱/手机号">
-                <input type="password" class="input_pass" placeholder="密码">
-                <input type="submit" class="input_sub" value="登 录">
+                <input type="text" class="input_txt" placeholder="用户名/手机号" id="name">
+                <input type="password" class="input_pass" placeholder="密码" id="password">
+                <input type="button" class="input_sub" value="登 录" id="submit_btn">
             </form>
         </div>
-    </div> 
+    </div>
 </body>
+
+<script>
+    // < !--给按键添加点击事件 -->
+    $('#submit_btn').click(function () {
+        var name = $('#name').val().trim();
+        var password = $('#password').val().trim()
+        user.login(name, password).then(function (res) {
+            console.log(res);
+            if (name.length == 0 || password.length == 0) {
+                alert('请输入值')
+            }
+            if (res.code == 200) {
+                alert('登录成功')
+                window.location.href = './index.html'
+            } else {
+                alert(res.msg)
+            }
+
+        })
+    })
+
+</script>
+
 </html>
