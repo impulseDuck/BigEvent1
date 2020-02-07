@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="css/main.css">
     <script src="js/jquery-1.12.4.min.js"></script>
     <script src="js/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./js/utils/config.js"></script>
+    <script src="./js/utils/category.js"></script>
+    <script src="../js库/template-web.js"></script>
 </head>
 
 <body>
@@ -28,7 +31,7 @@
                         <th class="text-center" width="100">操作</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="category_table">
                     <tr>
                         <td>未分类</td>
                         <td>uncategorized</td>
@@ -39,7 +42,7 @@
                         </td>
                     </tr>
 
-                    <tr>
+                    <!-- <tr>
                         <td>奇趣事</td>
                         <td>funny</td>
                         <td class="text-center">
@@ -67,19 +70,20 @@
                                 class="btn btn-info btn-xs">编辑</a>
                             <a href="javascript:deleteTr( 4 );" class="btn btn-danger btn-xs">删除</a>
                         </td>
-                    </tr>
+                    </tr> -->
                 </tbody>
                 <tfoot>
                     <tr>
                         <td colspan="3" class="text-center">
-                            <a href="#" class="btn btn-success" data-toggle="modal" data-target="#addModal">新增分类</a>
+                            <a href="#" class="btn btn-success" data-toggle="modal" data-target="#addModal"
+                                id="add">新增分类</a>
                         </td>
                     </tr>
                 </tfoot>
             </table>
         </div>
     </div>
-
+    <!-- 添加模态框 -->
     <div class="modal fade" id="addModal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -90,12 +94,12 @@
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
-                            <label for="recipient-name" class="control-label">分类名称:</label>
-                            <input type="text" class="form-control" id="recipient-name">
+                            <label for="name" class="control-label">分类名称:</label>
+                            <input type="text" class="form-control" id="name">
                         </div>
                         <div class="form-group">
-                            <label for="message-text" class="control-label">分类别名:</label>
-                            <input type="text" class="form-control" id="recipient-name">
+                            <label for="slug" class="control-label">分类别名:</label>
+                            <input type="text" class="form-control" id="slug">
                         </div>
                     </form>
                 </div>
@@ -106,7 +110,36 @@
             </div>
         </div>
     </div>
-
+    <!-- 编辑模态框 -->
+    <div class="modal fade" id="editModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                    <h4 class="modal-title">编辑分类</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <input type="hidden" class="form-control" id="edit_id">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit_name" class="control-label">分类名称:</label>
+                            <input type="text" class="form-control" id="edit_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit_slug" class="control-label">分类别名:</label>
+                            <input type="text" class="form-control" id="edit_slug">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" id="model_off">关闭</button>
+                    <button type="button" class="btn btn-primary" id="model_save">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         // $('#addModal').modal({
         //     show: false,
@@ -130,7 +163,128 @@
         //     }
         // })      
     </script>
+    <script id="temp_cate" type="text/html">
+    {{each data item}}
+    <tr>
+        <td>{{item.name}}</td>
+        <td>{{item.slug}}</td>
+        <td class="text-center">
+            <a href="javascript:editTr({&quot;id&quot;:&quot;1&quot;,&quot;slug&quot;:&quot;uncategorized&quot;,&quot;name&quot;:&quot;未分类&quot;});"
+                class="btn btn-info btn-xs edit" data-id='{{item.id}}' data-name='{{item.name}}' data-slug='{{item.slug}}'>编辑</a>
+            <a href="javascript:;" class="btn btn-danger btn-xs del" data-id='{{item.id}}'>删除</a>
+        </td>
+    </tr>
+    {{/each}}
+    </script>
 
+
+    <script>
+        // 获取显示，然后渲染到页面中。
+        getAndShow()
+        function getAndShow() {
+            category.get().then(function (res) {
+                console.log(res);
+                var htmlStr = template('temp_cate', res)
+                console.log(htmlStr);
+                $('#category_table').html(htmlStr)
+            });
+        }
+
+    </script>
+    <script>
+        // 添加功能
+        // 1.收集用户信息，简单判断
+        // 2.发请求，根据反馈，做后续操作
+        $('#model_add').click(function () {
+            var name = $('#name').val().trim();
+            var slug = $('#slug').val().trim();
+            if (name.length == 0 || slug.length == 0) {
+                alert('不能为空')
+                return
+            }
+            console.log(name, slug);
+            category.add(name, slug).then(function (res) {
+                console.log(res);
+                if (res.code === 200) {
+                    $('#name').val('');
+                    $('#slug').val('');
+                    $('#addModal').modal('hide');
+                } else {
+                    alert(res.msg);
+                }
+                getAndShow()
+            })
+        })
+
+        // 关闭模态框
+        close_moadl()
+        function close_moadl() {
+            $('#model_shutoff').click(function () {
+                $('#addModal').modal('hide');
+            })
+        }
+
+        // 删除
+        // 因为删除按钮是动态生成的，所以要用事件委托
+        // 1.获取id 2.请求接口，根据反馈，做后续操作
+        $('#category_table').on('click', '.del', function () {
+            var id = $(this).attr('data-id');
+            category.del(id).then(function (res) {
+                console.log(res);
+                if (res.code === 200) {
+                    getAndShow();
+                } else {
+                    alert(res.msg)
+                }
+
+            })
+        })
+
+        // 编辑
+        // 用事件委托添加点击事件，弹出模态框，并显示当前内容，用户修改，点击保存发请求，页面更新数据
+        $('#category_table').on('click', '.edit', function () {
+            $('#editModal').modal('show')
+            var name = $(this).attr('data-name');
+            var slug = $(this).attr('data-slug');
+            var id = $(this).attr('data-id');
+            $('#edit_name').val(name);
+            $('#edit_slug').val(slug);
+            $('#edit_id').val(id);
+        })
+        // 点击保存修改
+        $('#model_save').click(function () {
+            var id = $('#edit_id').val().trim();
+            var slug = $('#edit_slug').val().trim();
+            var name = $('#edit_name').val().trim();
+            if (id.length == 0 || slug.length == 0 || name.length == 0) {
+                alert('不能为空')
+                return
+            }
+            category.edit(id, name, slug).then(function (res) {
+                console.log(res);
+                if (res.code === 200) {
+                    getAndShow();
+                    $('#editModal').modal('hide');
+                } else {
+                    console.log((res.msg));
+
+                }
+            })
+        })
+
+        close_moadl2()
+        function close_moadl2() {
+            $('#model_off').click(function () {
+                $('#editModal').modal('hide');
+            })
+        }
+
+
+
+
+
+
+    </script>
 </body>
 
 </html>
