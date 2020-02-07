@@ -125,7 +125,7 @@
         $('#back').click(function () {
             user.logout().then(function (res) {
                 console.log(res);
-                if (code === 200) {
+                if (res.code === 200) {
                     window.location.href = './login.html'
                 } else {
                     alert(res.msg)
