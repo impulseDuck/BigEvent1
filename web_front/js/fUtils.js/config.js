@@ -5,6 +5,7 @@ var APILIST={
     get:BASEURL+'/category',
  // 获取文章
     article_get: BASEURL + '/search',
+    article_get2: BASEURL + '/search',
     // 获取热门排行榜
     hot_rank: BASEURL + '/rank',
     // 最新资讯
