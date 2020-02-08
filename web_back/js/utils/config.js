@@ -15,5 +15,7 @@ var APILIST={
     article_send:BASEURL+'/admin/article_publish',
     article_edit:BASEURL+'/admin/article_edit',
     article_del:BASEURL+'/admin/article_delete',
-    
+    // front
+    details:BASEURL+'/article',
+
 }

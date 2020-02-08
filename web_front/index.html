@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
+    <script src="../js库/template-web.js"></script>
+    <script src="../js库/jquery-1.12.4.min.js"></script>
+    <script src="./js/fUtils.js/config.js"></script>
+    <script src="./js/fUtils.js/article.js"></script>
 </head>
 
 <body>
@@ -28,23 +32,13 @@
         <div class="menu">
             <div class="menu_collapse fl">
                 <a href="javascript:;" class="level_one"><i class="fa fa-list-ul"></i>全部分类</a>
-                <ul class="level_two">
+                <ul class="level_two" id="menu_left">
                     <li class="up"></li>
-                    <li><a href="#">最 新</a></li>
-                    <li><a href="#">科 技</a></li>
-                    <li><a href="#">股 市</a></li>
-                    <li><a href="#">商 品</a></li>
-                    <li><a href="#">外 汇</a></li>
-                    <li><a href="#">公 司</a></li>
+                    <!-- <li><a href="#">最 新</a></li> -->
                 </ul>
             </div>
-            <ul class="left_menu fl">
-                <li><a href="#">最 新</a></li>
-                <li><a href="#">科 技</a></li>
-                <li><a href="#">股 市</a></li>
-                <li><a href="#">商 品</a></li>
-                <li><a href="#">外 汇</a></li>
-                <li><a href="#">公 司</a></li>
+            <ul class="left_menu fl" id="menu_main">
+                <!-- <li><a href="#">最 新</a></li> -->
             </ul>
             <ul class="right_menu fr">
                 <li><a href="#">科技专题</a></li>
@@ -55,106 +49,42 @@
 
     <div class="main_con clearfix">
         <div class="left_con">
-            <ul class="focus_list">
-                <li class="first">
+            <ul class="focus_list" id="focus_list">
+                <!-- <li class="first">
                     <a href="#"><img src="images/pic01.jpg" alt=""></a>
                     <p>图片说明</p>
-                </li>
-                <li>
-                    <a href="#"><img src="images/pic02.jpg" alt=""></a>
-                    <p>图片说明图片说明图片说明图片说明图片说明图片说明图片说明图片说明图片说明</p>
-                </li>
-                <li>
-                    <a href="#"><img src="images/pic03.jpg" alt=""></a>
-                    <p>图片说明</p>
-                </li>
-                <li>
-                    <a href="#"><img src="images/pic05.jpg" alt=""></a>
-                    <p>图片说明</p>
-                </li>
-                <li>
-                    <a href="#"><img src="images/pic06.jpg" alt=""></a>
-                    <p>图片说明</p>
-                </li>
+                </li> -->
+
+
             </ul>
 
             <div class="common_title">
                 <h3><i class="fa fa-edit"></i> 最新资讯</h3>
                 <a href="#" class="more"><i class="fa fa-angle-double-right"></i></a>
             </div>
-
-            <div class="common_news_list">
-                <a href="#" class="list_pic"><img src="images/pic09.jpg" alt=""></a>
-                <h4><a href="#">亚马逊金融试水中国？背后却是和华尔街的“金融战争” </a></h4>
-                <p>亚马逊抛弃了中国的买家们，却难以割舍庞大的卖家市场，有消息指出亚马逊中国将针对中国庞大的卖家群体推出一项贷款推荐计划。在连续对印度、墨西哥等新兴市场大力推广线上支付服务后，亚马逊金融试水进军中国市场的信号终于被放出。
-                </p>
-                <div class="new_info">
-                    <span>标签：财经&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;阅读( 5
-                        )&nbsp;&nbsp;&nbsp;<i class="fa fa-commenting"></i>&nbsp;评论( 10 )</span>
-                    <b>发布于 2018-08-30 12:18:58</b>
-                </div>
+            <div id="latest">
+                <!-- <div class="common_news_list">
+                    <a href="#" class="list_pic"><img src="images/pic09.jpg" alt=""></a>
+                    <h4><a href="#">亚马逊金融试水中国？背后却是和华尔街的“金融战争” </a></h4>
+                    <p>亚马逊抛弃了中国的买家们，却难以割舍庞大的卖家市场，有消息指出亚马逊中国将针对中国庞大的卖家群体推出一项贷款推荐计划。在连续对印度、墨西哥等新兴市场大力推广线上支付服务后，亚马逊金融试水进军中国市场的信号终于被放出。
+                    </p>
+                    <div class="new_info">
+                        <span>标签：财经&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;阅读( 5
+                            )&nbsp;&nbsp;&nbsp;<i class="fa fa-commenting"></i>&nbsp;评论( 10 )</span>
+                        <b>发布于 2018-08-30 12:18:58</b>
+                    </div>
+                </div> -->
             </div>
-
-            <div class="common_news_list">
-                <a href="#" class="list_pic"><img src="images/pic03.jpg" alt=""></a>
-                <h4><a href="#">马斯克的新花样？连接人脑和电脑的初创公司又筹了一笔钱,马斯克的新花样？连接人脑和电脑的初创公司又筹了一笔钱</a></h4>
-                <p>亚马逊抛弃了中国的买家们，却难以割舍庞大的卖家市场，有消息指出亚马逊中国将针对中国庞大的卖家群体推出一项贷款推荐计划。在连续对印度、墨西哥等新兴市场大力推广线上支付服务后，亚马逊金融试水进军中国市场的信号终于被放出。
-                </p>
-                <div class="new_info">
-                    <span>标签：财经&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;阅读( 5
-                        )&nbsp;&nbsp;&nbsp;<i class="fa fa-commenting"></i>&nbsp;评论( 10 )</span>
-                    <b>发布于 2018-08-30 12:18:58</b>
-                </div>
-            </div>
-
-            <div class="common_news_list">
-                <a href="#" class="list_pic"><img src="images/pic05.jpg" alt=""></a>
-                <h4><a href="#">马斯克的新花样？连接人脑和电脑的初创公司又筹了一笔钱</a></h4>
-                <p>亚马逊抛弃了中国的买家们，却难以割舍庞大的卖家市场，有消息指出亚马逊中国将针对中国庞大的卖家群体推出一项贷款推荐计划。在连续对印度、墨西哥等新兴市场大力推广线上支付服务后，亚马逊金融试水进军中国市场的信号终于被放出。
-                </p>
-                <div class="new_info">
-                    <span>标签：财经&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;阅读( 5
-                        )&nbsp;&nbsp;&nbsp;<i class="fa fa-commenting"></i>&nbsp;评论( 10 )</span>
-                    <b>发布于 2018-08-30 12:18:58</b>
-                </div>
-            </div>
-
-            <div class="common_news_list">
-                <a href="#" class="list_pic"><img src="images/pic07.jpg" alt=""></a>
-                <h4><a href="#">马斯克的新花样？连接人脑和电脑的初创公司又筹了一笔钱</a></h4>
-                <p>亚马逊抛弃了中国的买家们，却难以割舍庞大的卖家市场，有消息指出亚马逊中国将针对中国庞大的卖家群体推出一项贷款推荐计划。在连续对印度、墨西哥等新兴市场大力推广线上支付服务后，亚马逊金融试水进军中国市场的信号终于被放出。
-                </p>
-                <div class="new_info">
-                    <span>标签：财经&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;阅读( 5
-                        )&nbsp;&nbsp;&nbsp;<i class="fa fa-commenting"></i>&nbsp;评论( 10 )</span>
-                    <b>发布于 2018-08-30 12:18:58</b>
-                </div>
-            </div>
-
-            <div class="common_news_list">
-                <a href="#" class="list_pic"><img src="images/pic10.jpg" alt=""></a>
-                <h4><a href="#">马斯克的新花样？连接人脑和电脑的初创公司又筹了一笔钱</a></h4>
-                <p>亚马逊抛弃了中国的买家们，却难以割舍庞大的卖家市场，有消息指出亚马逊中国将针对中国庞大的卖家群体推出一项贷款推荐计划。在连续对印度、墨西哥等新兴市场大力推广线上支付服务后，亚马逊金融试水进军中国市场的信号终于被放出。
-                </p>
-                <div class="new_info">
-                    <span>标签：财经&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;阅读( 5
-                        )&nbsp;&nbsp;&nbsp;<i class="fa fa-commenting"></i>&nbsp;评论( 10 )</span>
-                    <b>发布于 2018-08-30 12:18:58</b>
-                </div>
-            </div>
-
         </div>
-        <div class="right_con">
+        <div class="right_con" id="right_con">
             <div class="common_wrap">
                 <h3><i class="fa fa-bar-chart"></i> 一周热门排行</h3>
-                <ul class="content_list">
-                    <li><span class="first">1</span><a href="#">神奇的水滴摄影，泡泡中的世界泡泡中的世界</a></li>
+                <ul class="content_list" id="hot_list">
+                    <!-- <li><span class="first">1</span><a href="#">神奇的水滴摄影，泡泡中的世界泡泡中的世界</a></li>
                     <li><span class="second">2</span><a href="#">神奇的水滴摄影，泡泡中的世界</a></li>
                     <li><span class="third">3</span><a href="#">神奇的水滴摄影，泡泡中的世界</a></li>
-                    <li><span>4</span><a href="#">神奇的水滴摄影，泡泡中的世界</a></li>
-                    <li><span>5</span><a href="#">神奇的水滴摄影，泡泡中的世界</a></li>
-                    <li><span>6</span><a href="#">神奇的水滴摄影，泡泡中的世界</a></li>
-                    <li><span>7</span><a href="#">神奇的水滴摄影，泡泡中的世界</a></li>
+                    <li><span>4</span><a href="#">神奇的水滴摄影，泡泡中的世界</a></li> -->
+
                 </ul>
             </div>
             <div class="common_wrap">
@@ -215,12 +145,112 @@
             <span>|</span>
             <a href="#">招聘人才</a>
             <span>|</span>
-            <a href="#">友情链接</a>		
+            <a href="#">友情链接</a>
         </div>
-        <p>CopyRight © 2019 深圳大事件信息技术股份有限公司   All Rights Reserved</p>
-        <p>电话：0755-****888    粤ICP备*******8号</p>
+        <p>CopyRight © 2019 深圳大事件信息技术股份有限公司 All Rights Reserved</p>
+        <p>电话：0755-****888 粤ICP备*******8号</p>
     </div>
 
 </body>
+<!-- 获取menu -->
+<script id="cate" type="text/html">
+    {{each data item}}
+        <li><a href="./list.html?id={{item.id}}">{{item.name}}</a></li>
+    {{/each}}
+</script>
+<!-- 获取焦点图 -->
+<script id="focus" type="text/html">
+{{each data item idx}}
+{{if idx == 0}}
+<li class="first">
+    {{else}}
+<li>
+    {{/if}}
+    <a href="#"><img src="{{item.cover}}" alt=""></a>
+    <p>{{item.title}}</p>
+</li>
+{{/each}}
+</script>
+<!-- 获取热门排行 -->
+<script id="hotEvent" type="text/html">
+    {{each data item idx}}
+    {{if idx == 0}}
+    <li><span class="first">{{idx+1}}</span><a href="#">{{item.title}}</a></li>
+    {{else if idx == 1}}
+    <li><span class="second">{{idx+1}}</span><a href="#">{{item.title}}</a></li>
+    {{else if idx == 2}}
+    <li><span class="third">{{idx+1}}</span><a href="#">{{item.title}}</a></li>
+    {{else}}
+    <li><span>{{idx+1}}</span><a href="#">{{item.title}}</a></li>
+    {{/if}}
+    {{/each}}
+</script>
+<!-- 获取最新资讯 -->
+<script id="news" type="text/html">
+    {{each data item}}
+    <div class="common_news_list">
+        <a href="#" class="list_pic"><img src="{{item.cover}}" alt=""></a>
+            <h4><a href="#">{{item.title}} </a></h4>
+            <p>{{item.intro}}
+        </p>
+            <div class="new_info">
+                <span>标签：{{item.type}}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;阅读( {{item.read}}
+            )&nbsp;&nbsp;&nbsp;<i class="fa fa-commenting"></i>&nbsp;评论( {{item.comment}} )</span>
+                <b>发布于 {{item.date}}</b>
+            </div>
+        </div>
+        {{/each}}
+</script>
+<script>
+    // 获取menu
+    user.get().then(function (res) {
+        console.log(res);
+        if (res.code == 200) {
+            var htmlStr = template('cate', res);
+            $('#menu_left').append(htmlStr);
+            $('#menu_main').html(htmlStr)
+        } else {
+            alert(res.msg)
+        }
+
+    })
+    // 获取焦点图
+    user.getFouceFive().then(function (res) {
+        console.log(res);
+        if (res.code === 200) {
+            // 渲染
+            var htmlStr = template("focus", res)
+            // console.log(htmlStr);
+            $('#focus_list').html(htmlStr)
+
+        } else {
+            alert(res.msg)
+        }
+    })
+
+    // 获取热门排行榜
+    user.hot().then(function (res) {
+        console.log(res);
+        if (res.code == 200) {
+            var htmlStr = template("hotEvent", res)
+            // console.log(htmlStr);
+            $('#hot_list').html(htmlStr)
+        } else {
+            alert(res.msg)
+        }
+    })
+    // 最新资讯
+    user.news().then(function (res) {
+        console.log(res);
+        if (res.code == 200) {
+            var htmlStr = template("news", res)
+            $('#latest').html(htmlStr)
+        } else {
+            alert(res.msg)
+        }
+    })
+
+
+</script>
 
 </html>

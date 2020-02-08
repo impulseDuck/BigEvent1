@@ -61,27 +61,21 @@
                     </tr>
                 </thead>
                 <tbody id="tbody">
-
-
-
-                    <tr>
+                    <!-- <tr>
                         <td>王积千造统最头</td>
                         <td>杰克</td>
                         <td>奇趣事</td>
                         <td class="text-center">2017-06-08 07:08:46</td>
 
 
-                        <td class="text-center">已发布</td>
-
-
-                        <td class="text-center">
-                            <a href="article_edit.html" class="btn btn-default btn-xs edit"
-                                data-edit='{{item.edit}}'>编辑</a>
-                            <a href="javascript:deleteTr( 1005 );" class="btn btn-danger btn-xs del"
-                                data-id='{{item.id}}'>删除</a>
-                        </td>
-                    </tr>
-
+                        <td class="text-center">已发布</td> -->
+                    <!-- <td class="text-center">
+                        <a href="article_edit.html?id={{item.id}}" class="btn btn-default btn-xs edit"
+                            data-edit='{{item.edit}}'>编辑</a>
+                        <a href="javascript:deleteTr( 1005 );" class="btn btn-danger btn-xs del"
+                            data-id='{{item.id}}'>删除</a>
+                    </td>
+                    </tr> -->
                 </tbody>
             </table>
 
@@ -111,7 +105,7 @@
         })
     </script>
     <script id="tmp_category" type="text/html">
-        <option value=''>所有分类</option>
+        <option value=''>所有分类</option> 
 
         {{each data item}}
         <option value='{{item.id}}'>{{item.name}}</option>
@@ -130,7 +124,7 @@
 
 
         <td class="text-center">
-            <a href="article_edit.html" class="btn btn-default btn-xs edit">编辑</a>
+            <a href="article_edit.html?id={{item.id}}" class="btn btn-default btn-xs edit">编辑</a>
             <a href="javascript:;" class="btn btn-danger btn-xs del" data-id='{{item.id}}'>删除</a>
         </td>
     </tr>

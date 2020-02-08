@@ -15,6 +15,10 @@
     <script src="js/jedate/js/jedate.js"></script>
     <script src="js/tinymce/js/tinymce/tinymce.min.js"></script>
     <script src="js/tinymce/js/tinymce_setup.js"></script>
+    <script src="../js库/template-web.js"></script>
+    <script src="./js/utils/config.js"></script>
+    <script src="./js/utils/article.js"></script>
+    <script src="./js/utils/category.js"></script>
 </head>
 
 <body>
@@ -23,29 +27,25 @@
             文章编辑
         </div>
         <div class="container-fluid common_con">
-            <form class="form-horizontal article_form">
+            <form class="form-horizontal article_form" id="form">
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">文章标题：</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" id="inputEmail3" value="文章标题文字">
+                        <input type="text" class="form-control" id="title" value="文章标题文字">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputPassword3" class="col-sm-2 control-label">文章封面：</label>
                     <div class="col-sm-10">
-                        <img src="images/pic06.jpg" class="article_cover">
-                        <input type="file" id="exampleInputFile">
+                        <img src="images/pic06.jpg" class="article_cover" id="imgPreview">
+                        <input type="file" id="cover">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">文章类别：</label>
                     <div class="col-sm-4">
-                        <select class="form-control">
-                            <option>类别一</option>
-                            <option>类别二</option>
-                            <option>类别三</option>
-                            <option selected>类别四</option>
-                            <option>类别五</option>
+                        <select class="form-control" id="type" name="type">
+
                         </select>
                     </div>
                 </div>
@@ -66,16 +66,93 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">文章内容：</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="rich_content" name="content" placeholder="文章内容" value="文章内容">
+                        <input type="text" class="form-control" id="rich_content" name="content" placeholder="文章内容"
+                            value="文章内容">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-success">修改</button>
+                        <button type="button" class="btn btn-success" id="save">修改</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 </body>
+<script id="cate" type="text/html">
+    {{each data item}}
+    <option {{item.id}}>{{item.name}}</option>
+    {{/each}}
+</script>
+<script>
+    // 1.获取文章id
+    // 2.根据id取回页面信息，并显示在页面上
+    // 3.保存实现编辑
+    // window.location ：是一个bom对象，保存浏览器当前页面的url信息，他是一个对象。
+    // window.location.search 获取当前页面url信息中查询字符串的值
+    // substr（）可以截取字符
+    var id = window.location.search.substr(4);
+    getAndShowCategory()
+    $('#save').click(function () {
+        // 要获取formdata的数据，注意吧name的属性设置成与接口参数一一对应。
+        var fd = new FormData(document.getElementById('form'))
+        // fd.append('id', id);
+        fd.append("id", id)
+        fd.set('content', tinymce.activeEditor.getContent())
+        article.edit(fd).then(function (res) {
+            console.log(res);
+            if (res.code === 200) {
+                alert("保存成功")
+            } else {
+                alert(res.msg)
+            }
+
+        })
+
+    })
+
+
+
+
+
+    // getAndShow(id)
+    function getAndShow(id) {
+        article.getByID(id).then(function (res) {
+            console.log(res);
+            if (res.code === 200) {
+                $('#title').val(res.data.title);
+                $('#dateinput').val(res.data.date);
+                $('#type').val(res.data.type);
+                $('#imgPreview').attr('src', res.data.cover)
+                // 所以要设置延迟
+                setTimeout(function () {
+                    // 富文本编辑器已就绪，但ajax数据回来，还未就绪，会报错
+                    tinymce.activeEditor.setContent(res.data.content)
+                }, 1000)
+            } else {
+                alert(res.msg)
+            }
+        })
+    }
+    function getAndShowCategory() {
+        category.get().then(function (res) {
+            console.log(res);
+            if (res.code == 200) {
+                var htmlStr = template('cate', res);
+                $('#type').html(htmlStr);
+                getAndShow(id)
+            } else {
+                alert(res.msg)
+            }
+
+        })
+    }
+    // 如何让一个下拉框选中指定的值
+    // 
+
+
+
+
+</script>
+
 </html>
