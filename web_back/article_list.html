@@ -137,7 +137,7 @@
         var curStatus = '';
         var curTotalPage;
         // 获取数据，显示类
-        category.get().then(function (res) {
+        category.get().then(res => {
             var htmlStr = template('tmp_category', res);
             console.log(htmlStr);
             $('#selCategory').html(htmlStr)
@@ -145,7 +145,7 @@
         // 获取文章列表，模版渲染
         getAndShow()
         function getAndShow() {
-            article.get(curPage, curType, curStatus).then(function (res) {
+            article.get(curPage, curType, curStatus).then(res => {
 
                 // console.log(htmlStr);
                 if (res.code === 200) {
@@ -186,7 +186,7 @@
         // 删除
         $('#tbody').on('click', '.del', function () {
             var id = $(this).attr('data-id');
-            article.del(id).then(function (res) {
+            article.del(id).then(res => {
                 console.log(res);
                 if (res.code == 200) {
                     getAndShow()

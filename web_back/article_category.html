@@ -203,7 +203,7 @@
                 return
             }
             console.log(name, slug);
-            category.add(name, slug).then(function (res) {
+            category.add(name, slug).then(res => {
                 console.log(res);
                 if (res.code === 200) {
                     $('#name').val('');
@@ -260,7 +260,7 @@
                 alert('不能为空')
                 return
             }
-            category.edit(id, name, slug).then(function (res) {
+            category.edit(id, name, slug).then(res => {
                 console.log(res);
                 if (res.code === 200) {
                     getAndShow();

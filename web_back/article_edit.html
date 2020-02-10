@@ -99,7 +99,7 @@
         // fd.append('id', id);
         fd.append("id", id)
         fd.set('content', tinymce.activeEditor.getContent())
-        article.edit(fd).then(function (res) {
+        article.edit(fd).then(res => {
             console.log(res);
             if (res.code === 200) {
                 alert("保存成功")

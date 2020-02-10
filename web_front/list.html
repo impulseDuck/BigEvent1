@@ -212,7 +212,7 @@
         // 获取最新资讯
 
         function getAndShow() {
-            user.getList(id, curpage).then(function (res) {
+            user.getList(id, curpage).then(res => {
                 console.log(res);
 
                 var htmlStr = template('news', res);

@@ -95,7 +95,7 @@
         fd.append('state', '已发布');
         // 获取富文本编辑器
         fd.set('content', tinyMCE.activeEditor.getContent());
-        article.send(fd).then(function (res) {
+        article.send(fd).then(res => {
             console.log(res);
             if (res.code === 201) {
                 alert('发布成功')
@@ -106,7 +106,7 @@
     })
 
     // 获取文章类别并显示
-    category.get().then(function (res) {
+    category.get().then(res => {
         console.log(res);
         if (res.code == 200) {
             var htmlStr = template('tmp', res)
@@ -118,7 +118,7 @@
         }
     })
     // 获取文章封面,图片预览
-    $('#cover').change(function () {
+    $('#cover').change(res => {
         var curFile = this.files[0];
         if (curFile) {
             console.log(curFile);

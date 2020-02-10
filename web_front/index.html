@@ -203,7 +203,8 @@
 </script>
 <script>
     // 获取menu
-    user.get().then(function (res) {
+    // let { code, msg } = res;
+    user.get().then(res => {
         console.log(res);
         if (res.code == 200) {
             var htmlStr = template('cate', res);
@@ -215,7 +216,7 @@
 
     })
     // 获取焦点图
-    user.getFouceFive().then(function (res) {
+    user.getFouceFive().then(res => {
         console.log(res);
         if (res.code === 200) {
             // 渲染
@@ -229,7 +230,7 @@
     })
 
     // 获取热门排行榜
-    user.hot().then(function (res) {
+    user.hot().then(res => {
         console.log(res);
         if (res.code == 200) {
             var htmlStr = template("hotEvent", res)
@@ -240,7 +241,7 @@
         }
     })
     // 最新资讯
-    user.news().then(function (res) {
+    user.news().then(res => {
         console.log(res);
         if (res.code == 200) {
             var htmlStr = template("news", res)

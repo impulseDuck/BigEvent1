@@ -115,7 +115,7 @@
     <script>
 
         // 获取个人信息
-        user.getInfo().then(function (res) {
+        user.getInfo().then(res => {
             console.log(res);
             $('#name').html(res.data.nickname);
             $('.pic').attr('src', res.data.user_pic)

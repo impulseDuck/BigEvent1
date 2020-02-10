@@ -217,7 +217,7 @@
     dayjs.extend(dayjs_plugin_relativeTime);
     var id = window.location.search.substr(4)
     // 获取热门列表
-    user.hot().then(function (res) {
+    user.hot().then(res => {
         console.log(res);
         if (res.code == 200) {
             var htmlStr = template('hot_list', res);
@@ -228,7 +228,7 @@
 
     })
     // 获取menu
-    user.get().then(function (res) {
+    user.get().then(res => {
         console.log(res);
         if (res.code == 200) {
             var htmlStr = template('menu', res);
@@ -240,7 +240,7 @@
 
     })
     //获取文章详情
-    user.article(id).then(function (res) {
+    user.article(id).then(res => {
         if (res.code == 200) {
             $('#title').html(res.data.title);
             $('#author').html(res.data.author);
@@ -265,7 +265,7 @@
     })    // 文章评论
     // var name =
 
-    $('#common').click(function () {
+    $('#common').click(res => {
         var name = $('#user_common').val().trim();
         var content = $('#text_common').val().trim();
         if (name.length == 0 || content.length == 0) {
