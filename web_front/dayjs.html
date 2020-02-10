@@ -1,0 +1,20 @@
+<script src="../js库/dayjs/dayjs.min.js"></script>
+<script src="../js库/dayjs/zh_cn.js"></script>
+<script src="../js库/dayjs/relative.min.js"></script>
+<script>
+    dayjs.locale('zh-cn')
+    var a = dayjs('2020-02-06');
+    console.log(a);
+    var b = dayjs().format('2020-02-06') //2019
+    console.log(b);
+    var c = dayjs().day();
+    console.log(c);
+    var d = dayjs().add(7, 'day').format('dddd');
+    console.log(d);
+// relative
+
+
+
+
+
+</script>

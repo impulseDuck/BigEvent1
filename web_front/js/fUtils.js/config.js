@@ -5,10 +5,15 @@ var APILIST={
     get:BASEURL+'/category',
  // 获取文章
     article_get: BASEURL + '/search',
-    article_get2: BASEURL + '/search',
     // 获取热门排行榜
     hot_rank: BASEURL + '/rank',
     // 最新资讯
-    hot_rank: BASEURL + '/lastest',
+    hot_lastest: BASEURL + '/lastest',
+    // 获取文章
+    article: BASEURL + '/article',
+    // 发表评论
+    send_common:BASEURL + '/post_comment',
+     // 最新评论
+     comment_get: BASEURL + '/get_comments'
    
 }
