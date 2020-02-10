@@ -1,8 +1,8 @@
 var user = {
-    login: function (name, password) {
+    login: function (user_name, password) {
         return $.post(APILIST.user_login, {
-                'user_name': name,
-                'password': password
+                user_name,
+                password
             })
     },
     logout:function(){

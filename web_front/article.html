@@ -10,6 +10,12 @@
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <script src="../js库/template-web.js"></script>
+    <!-- <script src="../js库/bootstrap.min.js"></script> -->
+    <!-- <script src="../web_back/js/bootstrap/js/bootstrap.min.js"></script> -->
+    <!-- <script src="../web_back/js/bootstrap/css/bootstrap.min.css"></script> -->
+
+    <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.3.3/bootbox.min.js'></script> -->
+
 
     <script src="./js/jquery-1.12.4.min.js"></script>
     <script src="../web_front/js/fUtils.js/config.js"></script>
@@ -263,6 +269,7 @@
         var name = $('#user_common').val().trim();
         var content = $('#text_common').val().trim();
         if (name.length == 0 || content.length == 0) {
+            // bootbox.alert("不能为空");
             alert('不能为空')
             return;
         }
@@ -280,24 +287,6 @@
 
     })
     // 展示评论
-    // function getAndShow() {
-    //     user.get_c(id).then(function (res) {
-    //         console.log(res);
-    //         if (res.code == 200) {
-    //             // 对每一条留言中的dt进行格式化
-    //             // 具体就是从 时间戳 转成相对时间
-    //             res.data.forEach(function (item) {
-    //                 // item.relativeTime = item.dt --->相对时间
-    //                 // item.relativeTime = getRelativeTime(item.dt)
-    //                 item.relativeTime = dayjs(item.dt).fromNow()
-
-    //             })
-    //             // console.log(res.data);
-    //             var htmlStr = template('tmp', res)
-    //             $('#comment_list').html(htmlStr)
-    //         }
-    //     })
-    // }
     getAndShow()
     function getAndShow() {
         user.get_c(id).then(function (res) {

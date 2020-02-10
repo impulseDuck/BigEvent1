@@ -1,18 +1,18 @@
 var article={
-    get:function(curPage,curType,curStatus){
+    get:function(page,type,state){
         return $.get(APILIST.article_get,
-            {'page': curPage,'type': curType,'state': curStatus}
+            {page,type,state}
            
             )
     },
     getByID:function(id){
         return $.get(APILIST.article_get,{
-            'id': id
+            id
         })
     },
     del:function(id){
         return $.get(APILIST.article_del,{
-            'id':id
+            id
         })
     },
     send:function(fd){
@@ -26,9 +26,9 @@ var article={
     },
     edit:function(id,name,slug){
         return $.post(APILIST.edit,{
-            'id':id,
-            'name':name,
-            'slug':slug
+            id,
+            name,
+           slug
         })
     }
 
