@@ -116,19 +116,25 @@
 
         // 获取个人信息
         user.getInfo().then(res => {
+            let { code, data } = res;
+            let {
+                nickname,
+                user_pic
+            } = data;
             console.log(res);
-            $('#name').html(res.data.nickname);
-            $('.pic').attr('src', res.data.user_pic)
+            $('#name').html(nickname);
+            $('.pic').attr('src', user_pic)
         })
 
         // 点击退出的时候，返回到登录页面
         $('#back').click(function () {
-            user.logout().then(function (res) {
+            user.logout().then(res => {
+                let { code, msg } = res;
                 console.log(res);
-                if (res.code === 200) {
+                if (code === 200) {
                     window.location.href = './login.html'
                 } else {
-                    alert(res.msg)
+                    alert(msg)
                 }
 
             })

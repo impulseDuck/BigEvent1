@@ -204,13 +204,14 @@
             }
             console.log(name, slug);
             category.add(name, slug).then(res => {
+                let { code, msg } = res;
                 console.log(res);
-                if (res.code === 200) {
+                if (code === 200) {
                     $('#name').val('');
                     $('#slug').val('');
                     $('#addModal').modal('hide');
                 } else {
-                    alert(res.msg);
+                    alert(msg);
                 }
                 getAndShow()
             })
@@ -230,11 +231,12 @@
         $('#category_table').on('click', '.del', function () {
             var id = $(this).attr('data-id');
             category.del(id).then(function (res) {
+                let { code, msg } = res;
                 console.log(res);
-                if (res.code === 200) {
+                if (code === 200) {
                     getAndShow();
                 } else {
-                    alert(res.msg)
+                    alert(msg)
                 }
 
             })
@@ -262,11 +264,13 @@
             }
             category.edit(id, name, slug).then(res => {
                 console.log(res);
-                if (res.code === 200) {
+                let { code, msg } = res;
+
+                if (code === 200) {
                     getAndShow();
                     $('#editModal').modal('hide');
                 } else {
-                    console.log((res.msg));
+                    console.log((msg));
 
                 }
             })

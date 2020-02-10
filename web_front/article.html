@@ -218,49 +218,68 @@
     var id = window.location.search.substr(4)
     // 获取热门列表
     user.hot().then(res => {
+        let { code, msg } = res;
         console.log(res);
-        if (res.code == 200) {
+        if (code == 200) {
             var htmlStr = template('hot_list', res);
             $('#content_list').html(htmlStr)
         } else {
-            alert(res.msg)
+            alert(msg)
         }
 
     })
     // 获取menu
     user.get().then(res => {
+        let { code, msg } = res;
         console.log(res);
-        if (res.code == 200) {
+        if (code == 200) {
             var htmlStr = template('menu', res);
             $('#left_nav').append(htmlStr);
             $('#left_menu').html(htmlStr);
         } else {
-            alert(res.msg)
+            alert(msg)
         }
 
     })
     //获取文章详情
     user.article(id).then(res => {
-        if (res.code == 200) {
-            $('#title').html(res.data.title);
-            $('#author').html(res.data.author);
-            $('#type_name').html(res.data.type_name);
-            $('#date').html(res.data.date);
-            $('#comment').html(res.data.comment);
-            $('#content').html(res.data.content);
+        let { code, data } = res;
+        if (code == 200) {
+            let {
+                title,
+                author,
+                type_name,
+                date,
+                comment,
+                content,
+                prev,
+                next
+            } = data;
+            $('#title').html(title);
+            $('#author').html(author);
+            $('#type_name').html(type_name);
+            $('#date').html(date);
+            $('#comment').html(comment);
+            $('#content').html(content);
 
             // $('#prev').html(res.data.prev);
             // 设置上一篇的标题和id
-            if (res.data.prev) {
-                $('#prev').attr('href', './article.html?id=' + res.data.prev.id);
-                $('#prev').text(res.data.prev.title);
+            if (prev) {
+                $('#prev').attr('href', './article.html?id=' + prev.id);
+                $('#prev').text(prev.title);
             } else (
                 $('#prev').text('无')
             )
             // 设置下一篇的标题和id
-            // $('#next').html(res.data.next);
-            $('#next').attr('href', './article.html?id=' + res.data.next.id);
-            $('#next').text(res.data.next.title);
+            if (next) {
+                $('#next').attr('href', './article.html?id=' + next.id)
+                $('#next').text(next.title)
+            } else {
+                $('#next').text('无');
+            }
+            $('#read').html(read);
+            // $('#next').attr('href', './article.html?id=' + id);
+            $('#next').text(title);
         }
     })    // 文章评论
     // var name =
@@ -274,13 +293,14 @@
             return;
         }
         user.send_common(name, content, id).then(function (res) {
+            let { code, msg } = res;
             console.log(res);
-            if (res.code == 200) {
+            if (code == 200) {
                 $('#user_common').val('');
                 $('#text_common').val('')
                 getAndShow()
             } else {
-                alert(res.msg)
+                alert(msg)
             }
 
         })

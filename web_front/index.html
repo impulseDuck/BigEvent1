@@ -206,48 +206,52 @@
     // let { code, msg } = res;
     user.get().then(res => {
         console.log(res);
-        if (res.code == 200) {
+        let { code, msg } = res;
+        if (code == 200) {
             var htmlStr = template('cate', res);
             $('#menu_left').append(htmlStr);
             $('#menu_main').html(htmlStr)
         } else {
-            alert(res.msg)
+            alert(msg)
         }
 
     })
     // 获取焦点图
     user.getFouceFive().then(res => {
+        let { code, msg } = res;
         console.log(res);
-        if (res.code === 200) {
+        if (code === 200) {
             // 渲染
             var htmlStr = template("focus", res)
             // console.log(htmlStr);
             $('#focus_list').html(htmlStr)
 
         } else {
-            alert(res.msg)
+            alert(msg)
         }
     })
 
     // 获取热门排行榜
     user.hot().then(res => {
+        let { code, msg } = res;
         console.log(res);
-        if (res.code == 200) {
+        if (code == 200) {
             var htmlStr = template("hotEvent", res)
             // console.log(htmlStr);
             $('#hot_list').html(htmlStr)
         } else {
-            alert(res.msg)
+            alert(msg)
         }
     })
     // 最新资讯
     user.news().then(res => {
+        let { code, msg } = res;
         console.log(res);
-        if (res.code == 200) {
+        if (code == 200) {
             var htmlStr = template("news", res)
             $('#latest').html(htmlStr)
         } else {
-            alert(res.msg)
+            alert(msg)
         }
     })
 

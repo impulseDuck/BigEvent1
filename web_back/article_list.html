@@ -146,9 +146,9 @@
         getAndShow()
         function getAndShow() {
             article.get(curPage, curType, curStatus).then(res => {
-
+                let { code, msg } = res;
                 // console.log(htmlStr);
-                if (res.code === 200) {
+                if (code === 200) {
                     var htmlStr = template('tmp_table', res);
                     $('#tbody').html(htmlStr);
 
@@ -169,7 +169,7 @@
                         }
                     });
                 } else {
-                    console.log(res.msg);
+                    console.log(msg);
 
                 }  // 点击筛选，获取类别，同步分类显示在页面中
                 $('#btnSearch').click(function () {
@@ -187,11 +187,12 @@
         $('#tbody').on('click', '.del', function () {
             var id = $(this).attr('data-id');
             article.del(id).then(res => {
+                let { code, msg } = res;
                 console.log(res);
-                if (res.code == 200) {
+                if (code == 200) {
                     getAndShow()
                 } else (
-                    alert(res.msg)
+                    alert(msg)
                 )
             })
 

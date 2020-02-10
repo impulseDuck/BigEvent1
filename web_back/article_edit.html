@@ -94,17 +94,19 @@
     var id = window.location.search.substr(4);
     getAndShowCategory()
     $('#save').click(function () {
+        let { code, msg } = res;
         // 要获取formdata的数据，注意吧name的属性设置成与接口参数一一对应。
         var fd = new FormData(document.getElementById('form'))
         // fd.append('id', id);
         fd.append("id", id)
         fd.set('content', tinymce.activeEditor.getContent())
         article.edit(fd).then(res => {
+            let { code, msg } = res;
             console.log(res);
-            if (res.code === 200) {
+            if (code === 200) {
                 alert("保存成功")
             } else {
-                alert(res.msg)
+                alert(msg)
             }
 
         })
@@ -118,31 +120,40 @@
     // getAndShow(id)
     function getAndShow(id) {
         article.getByID(id).then(function (res) {
+            let { code, msg, data } = res;
             console.log(res);
-            if (res.code === 200) {
-                $('#title').val(res.data.title);
-                $('#dateinput').val(res.data.date);
-                $('#type').val(res.data.type);
-                $('#imgPreview').attr('src', res.data.cover)
+            if (code === 200) {
+                let {
+                    title,
+                    date,
+                    type,
+                    cover,
+                    content
+                } = data;
+                $('#title').val(title);
+                $('#dateinput').val(date);
+                $('#type').val(type);
+                $('#imgPreview').attr('src', cover)
                 // 所以要设置延迟
                 setTimeout(function () {
                     // 富文本编辑器已就绪，但ajax数据回来，还未就绪，会报错
-                    tinymce.activeEditor.setContent(res.data.content)
-                }, 1000)
+                    tinymce.activeEditor.setContent(content)
+                }, 2000)
             } else {
-                alert(res.msg)
+                alert(msg)
             }
         })
     }
     function getAndShowCategory() {
-        category.get().then(function (res) {
+        category.get().then(res => {
+            let { code, msg } = res;
             console.log(res);
-            if (res.code == 200) {
+            if (code == 200) {
                 var htmlStr = template('cate', res);
                 $('#type').html(htmlStr);
                 getAndShow(id)
             } else {
-                alert(res.msg)
+                alert(msg)
             }
 
         })

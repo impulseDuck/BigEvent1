@@ -200,13 +200,14 @@
 
         // 获取热门排行榜
         user.hot().then(res => {
+            let { code, msg } = res;
             // console.log(res);
-            if (res.code == 200) {
+            if (code == 200) {
                 var htmlStr = template("hotEvent", res)
                 // console.log(htmlStr);
                 $('#hot_list').html(htmlStr)
             } else {
-                alert(res.msg)
+                alert(msg)
             }
         })
         // 获取最新资讯
